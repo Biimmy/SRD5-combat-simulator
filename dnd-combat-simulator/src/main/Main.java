@@ -1,18 +1,19 @@
 package main;
 
 import character.*;
+import debug.Test;
+import actor.*;
 
 public class Main {
 	
 	public static void main(String[] args)
 	{
-		EncounterCharacter test = new EncounterCharacter("Test1", 1);
-		test.addWeapon("test wep", "test type", 6, 2, 5, 5, "test attack type", "test damage type");
+		EncounterCharacter test1 = Test.loadTestCharacter("AttackerTest");
+		EncounterCharacter test2 = Test.loadTestCharacter("TargetTest");
 		
-		Weapon testWep = test.getWeapon(0);
+		Attack.weaponAttack(test2, test1, test1.getWeapon(0));
 		
-		System.out.println(testWep.getDamageRoll());
-		
+
 		
 	}
 	

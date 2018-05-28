@@ -6,9 +6,7 @@ public class CharacterStats {
 	private int[] abilityScores = new int[6];
 	private int[] abilityBonus = new int[6];
 	
-	//Skills Implementation
-	//private int passivePerception;
-	
+
 	//Proficiency Bonus
 	private int proficiency;
 	
@@ -35,7 +33,7 @@ public class CharacterStats {
 	}
 	
 	//All functions used to set and initial values are located below
-	public void InitiateAbilityScores(int strength, int dexterity, int constitution,
+	public void initiateAbilityScores(int strength, int dexterity, int constitution,
 			int intelligence, int wisdom, int charisma)
 	{
 		this.abilityScores[0] = strength;
@@ -45,10 +43,10 @@ public class CharacterStats {
 		this.abilityScores[4] = wisdom;
 		this.abilityScores[5] = charisma;		
 		
-		CalculateBonus();
+		calculateBonus();
 	}
 	
-	public void SetAC (int ArmorClass)
+	public void setAC (int ArmorClass)
 	{
 		if (ArmorClass < 0)
 		{
@@ -60,18 +58,23 @@ public class CharacterStats {
 		}
 	}
 	
-	public void setInitiative (int initBonus)
+	public int getAC()
 	{
-		this.initiative = GetBonus(1) + initBonus;
+		return this.ac;
 	}
 	
-	public void SetSpeed (int speed)
+	public void setInitiative (int initBonus)
+	{
+		this.initiative = getBonus("DEX") + initBonus;
+	}
+	
+	public void setSpeed (int speed)
 	{
 		this.speed = speed;
 	}
 	
 	//Value of -1 means that hitpoint max is not set yet
-	public void SetMaxHitpoints(int hp)
+	public void setMaxHitpoints(int hp)
 	{
 		if (this.hitpointsMax == -1 || this.currentHitpoints > hp)
 		{
@@ -82,13 +85,32 @@ public class CharacterStats {
 	
 	//Functions to pull stats located below
 	
-	//Pulls the ability bonus based on provided stat number (0=Str, 1=Dex, 2 = Con, 3 = Int, 4 = Wis, 5 = Cha)
-	public int GetBonus(int statNum)
+	//Pulls the ability bonus based on provided stat number (0=STR, 1=DEX, 2 =CON, 3 =INT, 4 =WIS, 5 =CHA)
+	public int getBonus(String stat)
 	{
+		int statNum = 0;
+		switch (stat)
+		{
+		case "STR": statNum = 0;
+		break;
+		case "DEX": statNum = 1;
+		break;
+		case "CON": statNum = 2;
+		break;
+		case "INT": statNum = 3;
+		break;
+		case "WIS": statNum = 4;
+		break;
+		case "CHA": statNum = 5;
+		break;
+		default: statNum = 1;
+		break;
+		}
+
 		return this.abilityBonus[statNum];
 	}
 	
-	private void CalculateBonus()
+	private void calculateBonus()
 	{
 		for (int i = 0; i < 6; i++)
 		{
