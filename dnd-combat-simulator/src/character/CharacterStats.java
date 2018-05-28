@@ -3,27 +3,27 @@ package character;
 public class CharacterStats {
 
 	//Gen Stats (0=Str, 1=Dex, 2 = Con, 3 = Int, 4 = Wis, 5 = Cha)
-	private Integer[] abilityScores = new Integer[6];
-	private Integer[] abilityBonus = new Integer[6];
+	private int[] abilityScores = new int[6];
+	private int[] abilityBonus = new int[6];
 	
 	//Skills Implementation
-	private Integer passivePerception;
+	//private int passivePerception;
 	
 	//Proficiency Bonus
-	private Integer proficiency;
+	private int proficiency;
 	
 	//Saving Throws implementation
 	
 	//Gen Combat Stats
-	private Integer hitpointsMax;
-	private Integer currentHitpoints;
-	private Integer ac;
-	private Integer speed;
-	private Integer initiative;
+	private int hitpointsMax;
+	private int currentHitpoints;
+	private int ac;
+	private int speed;
+	private int initiative;
 	
 	//Death saves (to implement later)
-	private Integer deathSuccess;
-	private Integer deathfailure;
+	private int deathSuccess;
+	private int deathfailure;
 	private Boolean deceased;
 	
 	CharacterStats()
@@ -31,11 +31,12 @@ public class CharacterStats {
 		this.deceased = false;
 		this.deathSuccess = 0;
 		this.deathfailure = 0;
+		this.hitpointsMax = -1;
 	}
 	
 	//All functions used to set and initial values are located below
-	public void InitiateAbilityScores(Integer strength, Integer dexterity, Integer constitution,
-			Integer intelligence, Integer wisdom, Integer charisma)
+	public void InitiateAbilityScores(int strength, int dexterity, int constitution,
+			int intelligence, int wisdom, int charisma)
 	{
 		this.abilityScores[0] = strength;
 		this.abilityScores[1] = dexterity;
@@ -47,7 +48,7 @@ public class CharacterStats {
 		CalculateBonus();
 	}
 	
-	public void SetAC (Integer ArmorClass)
+	public void SetAC (int ArmorClass)
 	{
 		if (ArmorClass < 0)
 		{
@@ -59,19 +60,20 @@ public class CharacterStats {
 		}
 	}
 	
-	public void setInitiative (Integer initBonus)
+	public void setInitiative (int initBonus)
 	{
 		this.initiative = GetBonus(1) + initBonus;
 	}
 	
-	public void SetSpeed (Integer speed)
+	public void SetSpeed (int speed)
 	{
 		this.speed = speed;
 	}
 	
-	public void SetMaxHitpoints(Integer hp)
+	//Value of -1 means that hitpoint max is not set yet
+	public void SetMaxHitpoints(int hp)
 	{
-		if (this.hitpointsMax == null || this.currentHitpoints > hp)
+		if (this.hitpointsMax == -1 || this.currentHitpoints > hp)
 		{
 			this.currentHitpoints = hp;
 		}
@@ -81,7 +83,7 @@ public class CharacterStats {
 	//Functions to pull stats located below
 	
 	//Pulls the ability bonus based on provided stat number (0=Str, 1=Dex, 2 = Con, 3 = Int, 4 = Wis, 5 = Cha)
-	public Integer GetBonus(Integer statNum)
+	public int GetBonus(int statNum)
 	{
 		return this.abilityBonus[statNum];
 	}

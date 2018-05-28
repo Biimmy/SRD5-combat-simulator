@@ -6,17 +6,17 @@ public class Weapon {
 
 	private String name;
 	private String weaponType;			//Used for proficency bonus calculation
-	private Integer weaponDice;
-	private Integer diceNumber;
-	private Integer rangeEffective;
-	private Integer rangeMax;
+	private int weaponDice;
+	private int diceNumber;
+	private int rangeEffective;
+	private int rangeMax;
 	
 	//Determines modifier to apply
 	private String attackType;
 	//Damage type for resistance calculation
 	private String damageType;
 	
-	Weapon(String n, String t, Integer dice, Integer diceNum, Integer rngEff, Integer rngMax, String aType, String dType)
+	Weapon(String n, String t, int dice, int diceNum, int rngEff, int rngMax, String aType, String dType)
 	{
 		this.name = n;
 		this.weaponType = t;
@@ -24,6 +24,8 @@ public class Weapon {
 		this.diceNumber = diceNum;
 		this.rangeEffective = rngEff;
 		this.rangeMax = rngMax;
+		this.attackType = aType;
+		this.damageType = dType;
 	}
 	
 	public void setAttackType(String type)
@@ -36,22 +38,22 @@ public class Weapon {
 		this.damageType = type;
 	}
 	
-	public Integer getDamageRoll()
+	public int getDamageRoll()
 	{
-		Integer damage = 0;
+		int damage = 0;
 		Random rand = new Random();
 		
 		for (int i = 0; i < this.diceNumber; i++)
 		{
 			damage = damage + rand.nextInt(this.weaponDice) + 1;
 		}
-		
+		System.out.println(damage);
 		return damage;
 	}
 	
-	public Integer[] GetRange()
+	public int[] GetRange()
 	{
-		return new Integer[]{this.rangeEffective, this.rangeMax};
+		return new int[]{this.rangeEffective, this.rangeMax};
 	}
 	
 	public String[] GetType()
