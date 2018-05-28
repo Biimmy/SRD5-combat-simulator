@@ -3,14 +3,14 @@ package character;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Character {
+public class EncounterCharacter {
 
 	private String name;
 	private int team;
 	private CharacterStats stats;
 	private List<Weapon> weapons = new LinkedList<Weapon>();
 	
-	public Character(String n, int t)
+	public EncounterCharacter(String n, int t)
 	{
 		this.name =n;
 		this.team = t;

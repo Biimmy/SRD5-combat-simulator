@@ -5,7 +5,7 @@ import java.util.Random;
 public class Weapon {
 
 	private String name;
-	private String weaponType;			//Used for proficency bonus calculation
+	private String weaponType;			//Used for proficiency bonus calculation
 	private int weaponDice;
 	private int diceNumber;
 	private int rangeEffective;
