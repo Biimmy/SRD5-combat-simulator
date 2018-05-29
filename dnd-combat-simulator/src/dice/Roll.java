@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Roll {
 	
-	public static int AbilityCheck (int modifier, int advantage)
+	public static int abilityCheck (int modifier, int advantage)
 	{
 		Random rand = new Random();
 		int rollmax = rand.nextInt(20) + 1; 

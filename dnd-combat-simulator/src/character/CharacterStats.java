@@ -36,54 +36,17 @@ public class CharacterStats {
 	public void initiateAbilityScores(int strength, int dexterity, int constitution,
 			int intelligence, int wisdom, int charisma)
 	{
-		this.abilityScores[0] = strength;
-		this.abilityScores[1] = dexterity;
-		this.abilityScores[2] = constitution;
-		this.abilityScores[3] = intelligence;
-		this.abilityScores[4] = wisdom;
-		this.abilityScores[5] = charisma;		
+		int[] aScoreInput = {strength, dexterity, constitution, intelligence, wisdom, charisma};
 		
+		for (int i = 0; i < 6; i++)
+		{
+			if (aScoreInput[i] >= 0)
+				this.abilityScores[i] = aScoreInput[i];
+			else
+				this.abilityScores[i] = 0;
+		}
 		calculateBonus();
 	}
-	
-	public void setAC (int ArmorClass)
-	{
-		if (ArmorClass < 0)
-		{
-			this.ac = 0;
-		}
-		else
-		{
-		this.ac = ArmorClass;
-		}
-	}
-	
-	public int getAC()
-	{
-		return this.ac;
-	}
-	
-	public void setInitiative (int initBonus)
-	{
-		this.initiative = getBonus("DEX") + initBonus;
-	}
-	
-	public void setSpeed (int speed)
-	{
-		this.speed = speed;
-	}
-	
-	//Value of -1 means that hitpoint max is not set yet
-	public void setMaxHitpoints(int hp)
-	{
-		if (this.hitpointsMax == -1 || this.currentHitpoints > hp)
-		{
-			this.currentHitpoints = hp;
-		}
-		this.hitpointsMax = hp;
-	}
-	
-	//Functions to pull stats located below
 	
 	//Pulls the ability bonus based on provided stat number (0=STR, 1=DEX, 2 =CON, 3 =INT, 4 =WIS, 5 =CHA)
 	public int getBonus(String stat)
@@ -103,13 +66,90 @@ public class CharacterStats {
 		break;
 		case "CHA": statNum = 5;
 		break;
-		default: statNum = 1;
+		default: statNum = 0;
 		break;
 		}
 
 		return this.abilityBonus[statNum];
 	}
 	
+	public void setProficiency(int prof)
+	{
+		if (prof >= 0)
+			this.proficiency = prof;
+		else
+			this.proficiency = 0;
+	}
+	
+	public int getProficiency()
+	{
+			return this.proficiency;		
+	}
+	
+	public void setAC (int ArmorClass)
+	{
+		if (ArmorClass < 0)
+		{
+			this.ac = 0;
+		}
+		else
+		{
+		this.ac = ArmorClass;
+		}
+	}
+	
+	public int getAC()
+	{
+		return this.ac;
+	}
+	
+	public void setInitiativeBonus (int initBonus)
+	{
+		this.initiative = getBonus("DEX") + initBonus;
+	}
+	
+	public int getInitiativeBonus()
+	{
+		return this.initiative;
+	}
+	
+	public void setSpeed (int speed)
+	{
+		if (speed >= 0)
+			this.speed = speed;
+		else
+			this.speed = 0;
+		
+	}
+	
+	public int getSpeed ()
+	{
+		return this.speed;
+	}
+	
+	//Value of -1 means that hitpoint max is not set yet
+	public void setMaxHitpoints(int hp)
+	{
+		if (this.hitpointsMax == -1 || this.currentHitpoints > hp)
+		{
+			this.currentHitpoints = hp;
+		}
+		this.hitpointsMax = hp;
+	}
+	
+	public int getMaxHitpoints ()
+	{
+		return this.hitpointsMax;
+	}
+	
+	public void changeHitpoints (int change)
+	{
+		System.out.println("Making change of: " + change + " to hitpoint value of " + this.currentHitpoints);
+		this.currentHitpoints = this.currentHitpoints + change;
+		System.out.println("New Hitpoint value: " + this.currentHitpoints);
+	}
+
+		
 	private void calculateBonus()
 	{
 		for (int i = 0; i < 6; i++)

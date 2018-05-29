@@ -31,10 +31,10 @@ public class Attack {
 		
 		System.out.println("Rolling with " + attackModifierStat);
 		attackModifier = attackerStats.getBonus(attackModifierStat);
+		attackModifier = attackModifier + attackerStats.getProficiency();
 		
-		attackRoll = Roll.AbilityCheck(attackModifier, 0);
+		attackRoll = Roll.abilityCheck(attackModifier, 0);
 		
-		attackRoll = 22;
 		System.out.println(attacker.getName() + " attacks with " + weapon.getName() + ": "+ attackRoll);
 		System.out.println("Comparing " + attackRoll + " to AC of " + targetStats.getAC());
 		
