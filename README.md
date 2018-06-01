@@ -1,2 +1,2 @@
-# dnd-combat-simulator
-Simulator for DnD 5e combat
+# SRD5-combat-simulator
+Simulator for SRD5 combat
