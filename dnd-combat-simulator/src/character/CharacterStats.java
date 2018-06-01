@@ -2,6 +2,8 @@ package character;
 
 public class CharacterStats {
 
+	boolean active; //Determines if character is currently active in init order
+	
 	//Gen Stats (0=Str, 1=Dex, 2 = Con, 3 = Int, 4 = Wis, 5 = Cha)
 	private int[] abilityScores = new int[6];
 	private int[] abilityBonus = new int[6];
@@ -20,16 +22,13 @@ public class CharacterStats {
 	private int initiative;
 	
 	//Death saves (to implement later)
-	private int deathSuccess;
-	private int deathfailure;
-	private Boolean deceased;
+	private boolean deceased;
 	
 	CharacterStats()
 	{
 		this.deceased = false;
-		this.deathSuccess = 0;
-		this.deathfailure = 0;
 		this.hitpointsMax = -1;
+		this.active = true;
 	}
 	
 	//All functions used to set and initial values are located below
@@ -147,6 +146,8 @@ public class CharacterStats {
 		System.out.println("Making change of: " + change + " to hitpoint value of " + this.currentHitpoints);
 		this.currentHitpoints = this.currentHitpoints + change;
 		System.out.println("New Hitpoint value: " + this.currentHitpoints);
+		//Check for death after change
+		hitpointCheck();
 	}
 
 		
@@ -162,6 +163,15 @@ public class CharacterStats {
 			{
 				this.abilityBonus[i] = (this.abilityScores[i] - 10) / 2;
 			}
+		}
+	}
+	
+	private void hitpointCheck()
+	{
+		if (this.currentHitpoints <= 0)
+		{
+			this.deceased = true;
+			this.active = false;
 		}
 	}
 }

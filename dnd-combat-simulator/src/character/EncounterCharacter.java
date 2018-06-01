@@ -3,16 +3,17 @@ package character;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EncounterCharacter {
+import entity.Entity;
 
-	private String name;
+public class EncounterCharacter extends Entity {
+
 	private int team;
 	private CharacterStats stats = null;
 	private List<Weapon> weapons = new LinkedList<Weapon>();
 	
 	public EncounterCharacter(String n, int t)
 	{
-		this.name = n;
+		super.name = n;
 		this.team = t;
 	}
 	
@@ -25,7 +26,7 @@ public class EncounterCharacter {
 	
 	public String getName()
 	{
-		return this.name;
+		return super.name;
 	}
 	
 	public CharacterStats getStats()
