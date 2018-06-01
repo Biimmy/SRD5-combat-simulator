@@ -27,6 +27,7 @@ public class CharacterStats {
 	CharacterStats()
 	{
 		this.deceased = false;
+		this.active = true;
 		this.hitpointsMax = -1;
 		this.active = true;
 	}
@@ -170,6 +171,7 @@ public class CharacterStats {
 	{
 		if (this.currentHitpoints <= 0)
 		{
+			System.out.println("Hitpoints < 0. Character dead");
 			this.deceased = true;
 			this.active = false;
 		}

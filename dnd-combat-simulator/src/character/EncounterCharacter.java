@@ -7,7 +7,9 @@ import entity.Entity;
 
 public class EncounterCharacter extends Entity {
 
+	private int playerCharacter;
 	private int team;
+	private int initiative;
 	private CharacterStats stats = null;
 	private List<Weapon> weapons = new LinkedList<Weapon>();
 	
@@ -21,12 +23,6 @@ public class EncounterCharacter extends Entity {
 	{
 		stats = new CharacterStats();
 		stats.initiateAbilityScores(strength, dexterity, constitution, intelligence, wisdom, charisma);
-		
-	}
-	
-	public String getName()
-	{
-		return super.name;
 	}
 	
 	public CharacterStats getStats()
@@ -58,6 +54,16 @@ public class EncounterCharacter extends Entity {
 	public List<Weapon> getWeaponList ()
 	{
 		return this.weapons;
+	}
+	
+	public int getInitiative()
+	{
+		return this.initiative;
+	}
+	
+	public void setInitiative(int init)
+	{
+		this.initiative = init;
 	}
 	
 }

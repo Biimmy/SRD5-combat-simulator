@@ -14,9 +14,11 @@ public class Attack {
 		String attackModifierStat;
 		int attackModifier = 0;
 		boolean crit = false;
+		int damage;
 		CharacterStats attackerStats = attacker.getStats();
 		CharacterStats targetStats = target.getStats();
 		
+		//Select which modifier to use based on weapon type
 		switch (weapon.getModifier())
 		{
 		case 1: attackModifierStat = "STR";
@@ -43,12 +45,14 @@ public class Attack {
 		{
 			System.out.println("CRIT AUTOMATIC HIT");
 			crit = true;
-			System.out.println("Hit for : " + weapon.getDamageRoll(attackModifier, crit));
+			damage = weapon.getDamageRoll(attackModifier, crit);
+			target.getStats().changeHitpoints(-damage);
 		}
 		else if (attackRoll >= targetStats.getAC())
 		{
 			System.out.println("Hit! Calculating damage");
-			System.out.println("Hit for : " + weapon.getDamageRoll(attackModifier, crit));
+			damage = weapon.getDamageRoll(attackModifier, crit);
+			target.getStats().changeHitpoints(-damage);
 			
 		}
 		else

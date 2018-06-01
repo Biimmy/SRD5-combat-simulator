@@ -61,6 +61,7 @@ public class Weapon {
 			damage = damage + rand.nextInt(this.weaponDice) + 1;
 			System.out.println(damage);
 		}
+		System.out.println("Attack hits for " + damage + " + " + modifier);
 		return damage + modifier;
 	}
 	
